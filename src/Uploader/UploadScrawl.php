@@ -1,11 +1,11 @@
-<?php namespace Stevenyangecho\UEditor\Uploader;
+<?php namespace qiangbi\UEditor\Uploader;
 
-use Stevenyangecho\UEditor\Uploader\Upload;
+use qiangbi\UEditor\Uploader\Upload;
 
 /**
  * Class UploadScrawl
  * 涂鸦上传
- * @package Stevenyangecho\UEditor\Uploader
+ * @package qiangbi\UEditor\Uploader
  */
 class UploadScrawl extends Upload
 {

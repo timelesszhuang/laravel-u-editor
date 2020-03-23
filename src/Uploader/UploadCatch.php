@@ -1,12 +1,12 @@
-<?php namespace Stevenyangecho\UEditor\Uploader;
+<?php namespace qiangbi\UEditor\Uploader;
 
-use Stevenyangecho\UEditor\Uploader\Upload;
+use qiangbi\UEditor\Uploader\Upload;
 
 /**
  * Class UploadCatch
  * 图片远程抓取
  *
- * @package Stevenyangecho\UEditor\Uploader
+ * @package qiangbi\UEditor\Uploader
  */
 class UploadCatch  extends Upload{
     use UploadQiniu;

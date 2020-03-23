@@ -1,4 +1,4 @@
-<?php namespace Stevenyangecho\UEditor\Uploader;
+<?php namespace qiangbi\UEditor\Uploader;
 use OSS\OssClient;
 
 /**
@@ -8,7 +8,7 @@ use OSS\OssClient;
  *
  * 阿里 上传 类
  *
- * @package Stevenyangecho\UEditor\Uploader
+ * @package qiangbi\UEditor\Uploader
  */
 trait UploadAliOss
 {

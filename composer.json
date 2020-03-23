@@ -23,13 +23,13 @@
   },
   "autoload": {
     "psr-4": {
-      "qiangbi\\UEditor\\": "src/"
+      "Stevenyangecho\\UEditor\\": "src/"
     }
   },
   "extra": {
     "laravel": {
       "providers": [
-        "qiangbi\\UEditor\\UEditorServiceProvider.php"
+        "Stevenyangecho\\UEditor\\UEditorServiceProvider.php"
       ]
     }
   },

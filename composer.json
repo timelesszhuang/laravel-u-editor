@@ -23,7 +23,14 @@
   },
   "autoload": {
     "psr-4": {
-      "Stevenyangecho\\UEditor\\": "src/"
+      "qiangbi\\UEditor\\": "src/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "qiangbi\\UEditor\\UEditorServiceProvider.php"
+      ]
     }
   },
   "minimum-stability": "dev",

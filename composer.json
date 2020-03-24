@@ -14,7 +14,6 @@
       "email": "support@qiangbi.net"
     }
   ],
-
   "require": {
     "php": ">=7.2.0",
     "ext-fileinfo": "*",
@@ -29,7 +28,7 @@
   "extra": {
     "laravel": {
       "providers": [
-        "qiangbi\\UEditor\\UEditorServiceProvider.php"
+        "qiangbi\\UEditor\\UEditorServiceProvider"
       ]
     }
   },

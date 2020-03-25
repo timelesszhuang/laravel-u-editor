@@ -8,7 +8,8 @@ use qiangbi\UEditor\Uploader\Upload;
  *
  * @package qiangbi\UEditor\Uploader
  */
-class UploadCatch  extends Upload{
+class UploadCatch extends Upload
+{
     use UploadQiniu;
     use UploadAliOss;
 
@@ -22,7 +23,7 @@ class UploadCatch  extends Upload{
             return false;
         }
         //获取请求头并检测死链
-        $heads = get_headers($imgUrl);
+        $heads = get_headers($imgUrl, 1);
 
         if (!(stristr($heads[0], "200") && stristr($heads[0], "OK"))) {
             $this->stateInfo = $this->getStateInfo("ERROR_DEAD_LINK");
@@ -30,8 +31,9 @@ class UploadCatch  extends Upload{
         }
 
         //格式验证(扩展名验证和Content-Type验证)
-        $fileType = strtolower(strrchr($imgUrl, '.'));
-        if (!in_array($fileType, $this->config['allowFiles']) ) {
+        $headFileType = $heads['Content-Type'];
+        $fileType = str_replace('/', '.', strtolower(strrchr($headFileType, '/')));
+        if (!in_array($fileType, $this->config['allowFiles'])) {
             $this->stateInfo = $this->getStateInfo("ERROR_HTTP_CONTENTTYPE");
             return false;
         }
@@ -51,16 +53,13 @@ class UploadCatch  extends Upload{
         preg_match("/[\/]([^\/]*)[\.]?[^\.\/]*$/", $imgUrl, $m);
 
 
-        $this->oriName = $m ? $m[1]:"";
+        $this->oriName = $m ? $m[1] : "";
         $this->fileSize = strlen($img);
         $this->fileType = $this->getFileExt();
         $this->fullName = $this->getFullName();
         $this->filePath = $this->getFilePath();
-        $this->fileName =  basename($this->filePath);
+        $this->fileName = basename($this->filePath);
         $dirname = dirname($this->filePath);
-
-
-
 
 
         //检查文件大小是否超出限制
@@ -70,7 +69,7 @@ class UploadCatch  extends Upload{
         }
 
 
-        if(config('UEditorUpload.core.mode')=='local'){
+        if (config('UEditorUpload.core.mode') == 'local') {
             //创建目录失败
             if (!file_exists($dirname) && !mkdir($dirname, 0777, true)) {
                 $this->stateInfo = $this->getStateInfo("ERROR_CREATE_DIR");
@@ -88,23 +87,21 @@ class UploadCatch  extends Upload{
                 $this->stateInfo = $this->stateMap[0];
                 return true;
             }
-        }else if(config('UEditorUpload.core.mode')=='qiniu'){
+        } else if (config('UEditorUpload.core.mode') == 'qiniu') {
 
-            return $this->uploadQiniu($this->filePath,$img);
+            return $this->uploadQiniu($this->filePath, $img);
 
-        }else if(config('UEditorUpload.core.mode')=='oss'){
+        } else if (config('UEditorUpload.core.mode') == 'oss') {
 
-            return $this->uploadAliOss($this->filePath,$img);
+            return $this->uploadAliOss($this->filePath, $img);
         }
         // else if(config('UEditorUpload.core.mode')=='upyun'){
         //    return $this->uploadUpyun($this->filePath,$img);
         // }
-        else{
-            $this->stateInfo = $this->getStateInfo("ERROR_UNKNOWN_MODE");
+        else {
+            $this->stateInfo = $this->getStateInfo("ERROR_UNKNOWN_MODE") . "8";
             return false;
         }
-
-
 
 
     }

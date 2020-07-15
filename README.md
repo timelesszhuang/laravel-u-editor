@@ -13,8 +13,9 @@ UEditor 前台文件完全无修改,可自由gulp等工具部署到生产环境
 
 
 ## ChangeLog
+  v1.4.8
+    增加 svg 或无文件 后缀的图片 后缀抓取
   v1.4.5
-
   增加laravel的storage的支持
 
   增加阿里云存储的支持

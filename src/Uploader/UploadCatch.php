@@ -33,10 +33,11 @@ class UploadCatch extends Upload
         //格式验证(扩展名验证和Content-Type验证)
         $headFileType = $heads['Content-Type'];
         $fileType = str_replace('/', '.', strtolower(strrchr($headFileType, '/')));
-        if (!in_array($fileType, $this->config['allowFiles'])) {
-            $this->stateInfo = $this->getStateInfo("ERROR_HTTP_CONTENTTYPE");
-            return false;
-        }
+
+//        if (!in_array($fileType, $this->config['allowFiles'])) {
+//            $this->stateInfo = $this->getStateInfo("ERROR_HTTP_CONTENTTYPE");
+//            return false;
+//        }
 
         //打开输出缓冲区并获取远程图片
         ob_start();
